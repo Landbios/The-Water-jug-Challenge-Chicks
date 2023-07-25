@@ -95,12 +95,13 @@ const Ui = ({Steps, setSteps}) => {
                         }
                         else if( jug2 + jug1 > Maxjug1 && jug1 < Maxjug1){
                             jug2 = jug2 + jug1 - Maxjug1;
+                            jug1 = jug1 + (Maxjug2 - jug2)
                             StepObject.Jug2 = jug2;
-                           StepObject.Jug1 = jug1 + (Maxjug2 - jug2);
+                           StepObject.Jug1 = jug1;
                            StepObject.Action = 'Transfer water from jug 2 to 1';
                            StepObject.Desired = Desired;
                            console.log(jug1,jug2,StepObject.Action)
-                           fsteps.push({StepObject});
+                           fsteps.push(StepObject);
                            
 
                         }
@@ -209,6 +210,12 @@ const Ui = ({Steps, setSteps}) => {
                             console.log(jug1,jug2,StepObject.Action)
 
                         }
+                        else{
+                            setErrorbool(true);
+                            jug1 = Desired;
+                   
+                            setErrorMessage('Theres is not a posible or optimal solution for this values');
+                        }
                      
 
 
@@ -276,7 +283,7 @@ const Ui = ({Steps, setSteps}) => {
                            StepObject.Action = 'Transfer water from jug 1 to 2';
                            StepObject.Desired = Desired;
                            console.log(jug1,jug2,StepObject.Action)
-                           fsteps.push({StepObject});
+                           fsteps.push(StepObject);
                            
 
                         }
